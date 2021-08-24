@@ -30,8 +30,7 @@ export async function process(image: HTMLImageElement, w: number, h: number, sha
 
 	// bg
 
-	let bgColor1: number[] = colorThief.getColor(image);
-	let bgColor2: number[] = colorThief.getPalette(image)[0];
+	let bgColor: number[] = colorThief.getColor(image);
 
 	// fg
 
@@ -56,12 +55,7 @@ export async function process(image: HTMLImageElement, w: number, h: number, sha
 		const fgXshift = (canvas.width - (centerScale * canvas.height)) / 2;
 		const fgYshift = (canvas.height - (centerScale * canvas.height)) / 2;
 
-		const bgGradient = canvasCtx.createLinearGradient(0, 0, canvas.width, canvas.height);
-
-		bgGradient.addColorStop(0, `rgb(${bgColor1[0]}, ${bgColor1[1]}, ${bgColor1[2]})`);
-		bgGradient.addColorStop(1, `rgb(${bgColor2[0]}, ${bgColor2[1]}, ${bgColor2[2]})`);
-
-		canvasCtx.fillStyle = bgGradient;
+		canvasCtx.fillStyle = `rgb(${bgColor[0]}, ${bgColor[1]}, ${bgColor[2]})`;
 		canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
 		canvasCtx.drawImage(fgShadow, fgXshift, fgYshift, canvas.height * centerScale, canvas.height * centerScale); 
 	}
@@ -72,12 +66,7 @@ export async function process(image: HTMLImageElement, w: number, h: number, sha
 		const fgXshift = (canvas.width - (centerScale * canvas.width)) / 2;
 		const fgYshift = (canvas.height - (centerScale * canvas.width)) / 2;
 
-		const bgGradient = canvasCtx.createLinearGradient(0, 0, canvas.width, canvas.height);
-
-		bgGradient.addColorStop(0, `rgb(${bgColor1[0]}, ${bgColor1[1]}, ${bgColor1[2]})`);
-		bgGradient.addColorStop(1, `rgb(${bgColor2[0]}, ${bgColor2[1]}, ${bgColor2[2]})`);
-
-		canvasCtx.fillStyle = bgGradient;
+		canvasCtx.fillStyle = `rgb(${bgColor[0]}, ${bgColor[1]}, ${bgColor[2]})`;
 		canvasCtx.fillRect(0, 0, canvas.height, canvas.width);
 		canvasCtx.drawImage(fgShadow, fgXshift, fgYshift, canvas.width * centerScale, canvas.width * centerScale); 
 	}

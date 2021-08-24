@@ -61,7 +61,7 @@ export class SearchResult implements ComponentInterface {
     const imageBlob = await this.fetchBlob(this.maxResURL);
     const image = await this.createImage(imageBlob);
 
-    const objBlob = await process(image, r.w, r.h, 12, 100, 64);
+    const objBlob = await process(image, r.w, r.h);
 
     const UA = window.navigator.platform;
 
